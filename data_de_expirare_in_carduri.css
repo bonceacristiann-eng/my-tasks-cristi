@@ -1,0 +1,9 @@
+.card-due {
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+
+.card-due.expirat {
+  color: #ff5a5a;
+  font-weight: 600;
+}

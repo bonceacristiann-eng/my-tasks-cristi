@@ -1,0 +1,102 @@
+.flatpickr-calendar {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: none !important;
+  font-family: 'DM Mono', monospace !important;
+}
+
+.flatpickr-day {
+  color: var(--text) !important;
+  border-radius: 8px !important;
+}
+
+.flatpickr-day:hover {
+  background: var(--surface2) !important;
+  border-color: var(--accent) !important;
+}
+
+.flatpickr-day.selected {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #111 !important;
+}
+
+.flatpickr-day.today {
+  border-color: var(--accent) !important;
+}
+
+.flatpickr-months {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+.flatpickr-current-month,
+.flatpickr-monthDropdown-months,
+.numInputWrapper input {
+  color: var(--text) !important;
+  font-family: 'DM Mono', monospace !important;
+  background: var(--surface) !important;
+}
+
+.flatpickr-monthDropdown-months option {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+.flatpickr-weekday {
+  color: var(--muted) !important;
+  font-family: 'DM Mono', monospace !important;
+}
+
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+  fill: var(--text) !important;
+}
+
+.flatpickr-months .numInputWrapper span.arrowUp:after {
+  border-bottom-color: var(--text) !important;
+}
+
+.flatpickr-months .numInputWrapper span.arrowDown:after {
+  border-top-color: var(--text) !important;
+}
+
+.flatpickr-months .numInputWrapper span {
+  opacity: 1 !important;
+}
+
+.flatpickr-day.flatpickr-disabled {
+  color: var(--muted) !important;
+  opacity: 0.4;
+}
+
+
+/* !important forteaza CSS-ul sa foloseasca acest css fata de css ul importat Fltapickr care vine cu proporiul fiser css
+deci fara acest !important stilurile mele ar fi ignorate si calendarul ar arata cu culorile implicite ale Flatpickr in loc
+de culorile aplicatiei mele */
+
+/* .flatpickr-calendar este containerul principal al calendarului si il face sa arate ca restul aplicatiei,adica fundat intunecat, bordura
+gri subtire, colturi rotunjite, fara umbra si font DM Mono
+
+.flatpickr-day face fiecare zi din calendar sa fie cu text alb si colturi rotunjite
+
+.flatpickr-day: hover cand trect cu mouseul peste o zi, fundalul devine putin mai deschis si bordura devine verde 
+
+. flatpickr-day. selected face ca ziua selectata sa fie cu fundal verde, text negru
+
+.flatpickr-day. today face ca ziua de azi sa aiba o bordura verde pentru a fi identificata mai usor in calendar
+
+.flatpickr-months este bara de sus a calendarului unde apare luna si anul si o face cu fundal gri si text alb
+
+liniile 34-39 fac textul lunii curente, dropdown-ul de luni si campul de an toate albecu font DM mono si fundal gri intunecat
+
+.flatpickr-monthDropdown-months option fac dropdownul lista de luni cu fundal intunecat si text alb
+
+.flatpickr-weekday fac ca zilele saptamanii luni, marti. miercuri sa fie gri si font DM mono 
+
+liniile 52 - 55 fac sagetile stanga si dreapta pentru navigarea intre luni colorate in alb ca sa fie vizibile pe fundalul intunecat
+
+liniile 57 - 63 fac sageata sus si jos  din campul an sa fie colorata alb astfel incat sa fie vizibila
+
+.flatpickr-day.flatpickr-disabled face ca zilele din trecut pe care nu le pot selecta sa fie gri si semi-transparente ca sa para sterse vizual */

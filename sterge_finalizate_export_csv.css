@@ -1,0 +1,44 @@
+.actions-bar {
+  max-width: 720px;
+  margin: 24px auto 32px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.clear-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--danger);
+  background: transparent;
+  color: var(--danger);
+  cursor: pointer;
+  transition: all .2s;
+  letter-spacing: .04em;
+}
+
+.export-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--accent3);
+  background: transparent;
+  color: var(--accent3);
+  cursor: pointer;
+  transition: all .2s;
+  letter-spacing: .04em;
+}
+
+.export-btn:hover {
+  background: var(--accent3);
+  color: #111;
+}
+
+.clear-btn:hover {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}

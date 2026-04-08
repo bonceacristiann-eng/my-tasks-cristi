@@ -1,0 +1,16 @@
+{
+  "name": "My Tasks",
+  "short_name": "Tasks",
+  "description": "Aplicatie to-do list",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0e0e10",
+  "theme_color": "#c6f135",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "64x64",
+      "type": "png"
+    }
+  ]
+}

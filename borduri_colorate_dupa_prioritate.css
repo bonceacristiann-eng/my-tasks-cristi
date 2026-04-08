@@ -1,0 +1,15 @@
+.card.low {
+  border: 2px solid #55d992;
+}
+
+.card.medium {
+  border: 2px solid #f1c135
+}
+
+.card.high {
+  border: 2px solid #ff5a5a;
+}
+
+
+/*  astea sunt bordurile colorate ale cardurilor in functie de prioritate
+ adica prioritate scazuta cu bordura verde, cu prioritate medie cu bordura galbena si prioritate ridicata cu bordura rosie */

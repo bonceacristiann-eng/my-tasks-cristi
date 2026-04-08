@@ -1,0 +1,52 @@
+.card-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all .15s;
+}
+
+.icon-btn:hover.edit-btn {
+  color: var(--accent2);
+  border-color: var(--accent2);
+}
+
+.icon-btn:hover.del-btn {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.edit-btn i {
+  color: var(--accent2);
+}
+
+.del-btn i {
+  color: var(--danger);
+}
+
+/* linia 1 .card-actions este containerul care contine cele doua butoane creionul adica editare si cosul de gunoi, display flex le pune pe
+acelasi rand cu 6 px spatiu intre ele, iar flex-shrink: 0 impiedica butoanele sa se micsoreze cand textul task-ului este lung, adica butoanele
+raman mereu la dimensiunea lor
+
+linia 7 .icon-btn este stilul de baza al ambelor butoane adica patrat de 30x30 px, colturi rotunjite, bordura gri subtire, fundal transparent,
+iconita gri, iar display:flex , align-items: center si justify-content: center fac ca iconita sa fie perfect in mijlocul butonului
+tranzitia de 0.15 face ca hoverul sa se deschida rapid.
+
+linia 22 .icon-btn:hover .edit-btn cand ma duc cu cursorul pe butonul editare creion, bordura devine galben
+
+linia 27 cand ma duc cu cursorul pe stergere bordura si iconita devine rosie
+
+linia 32 si 36 fac ca iconitele sa fie permanent galben si rosu */

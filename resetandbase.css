@@ -1,0 +1,15 @@
+
+
+*, *::before, *::after { /*curata stilurile implicite ale browserului */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 40px 20px 80px;
+}

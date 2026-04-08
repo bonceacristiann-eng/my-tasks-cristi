@@ -1,0 +1,148 @@
+.bg-panel {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  background: rgba(24, 24, 28, 0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.bg-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+
+.bg-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bg-row input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  padding: 9px 14px;
+  outline: none;
+  transition: border .2s;
+}
+
+.bg-row input[type="text"]:focus {
+  border-color: var(--accent);
+}
+
+.bg-row input::placeholder {
+  color: var(--muted);
+}
+
+.bg-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  padding: 9px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+.bg-btn:hover {
+  background: var(--accent);
+  color: #111;
+}
+
+.bg-btn-clear {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.bg-btn-clear:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.23);
+  z-index: 0;
+  pointer-events: none;
+}
+
+header, .tabs, .add-area, #list, .actions-bar, .bg-panel {
+  position: relative;
+  z-index: 1;
+}
+
+/* .bg-panel este blocul pentru fundal personalizat*/
+/* linia 1 este containerul principal al sectiunii de fundal,lina 2 si linia 3, max-width: 720 px; si margin: 0 auto 32 px; adica are
+latime maxima de 720 px si e centrat pe pagina cu auto si 32 px jos il separa de ce urmeaza */
+/* linia 4 este fundalul containerului si are aceeasi culoare ca --surface din variabile globale dar cu opacitate de 0.85 care il face 
+usor transparent ca sa se vada imagine de fundal prin el */
+/* linia 5 si 6 este bordura subtire gri si colturi rotunjite de 16 px (--radius) din variabile gloabale, acelasi radius este folosit peste
+tot in aplicatie */
+/* linia 7 este un spatiu interior de 16 px sus si jos si 20 px stanga si dreapta */
+/* liniile 8, 9 si 10 aranjeaza cele doua elemente din interiorul lui unul sub altu, adica Fundal personalizat sus, iar randul cu 
+inputul si butoanele jos cu spatiu intre ele de 10 px. */
+/* liniile 11 si 12 sunt necesare ca panelul sa apara deasupra stratului :: before cu overlay-ul intunecat daca nu as avea z=index: 1
+fundalul negru  ar acoperi tot si nu as mai putea da click pe input sau pe butoane, iar z-index nu fucntioneaza fara position: relative. */
+
+/*iniile 15-18 din .bg-label face textul "Fundal personalizat" din HTML mic, gri adica -- muted cu litere usor distanntate
+
+/* liniile 21-25 .bg-row este containerul care tine inputul si cele doua butoane pe acelasi rand cu 10 px intre ele, iar flex-wrap : wrap
+permite elemntelor sa mearga pe rand nou daca ecranul este ingust, acest lucru este important pentru telefon */
+
+/* liniile 27-29 face ca inputul sa se intinda sa ocupe tot spatiul ramas dupa butoane, iar min-width: 200 px asigura sa nu devina prea ingust 
+pe ecran mici */
+/* liniile 30-32  face fundalul inputului gri inchis cu bordura subtie si colturi rotungite de 10 px */
+/* liniile 33-36  face ca textul scris in input sa fie alb cu fontul DM Mono care este si in restul aplicatie, dimensine mica decat dimensiuea
+standard a paginii, iar padding-ul este spatiul dinre textul din input si bordura lui 9 px sus jos si 14 px stanga dreapta fara padding textul
+ar fi lipit de bordura */
+/* linile 37 si 38 elimina conturul albastru care este implicit al browserului la click, tranzitia face ca schimbarea bordurii la focus
+ sa fie animata lin in 0.2 secunde */
+
+ /* liniile 41-43 in momentul in care dau click, adica prin :focus inseamna ca elemntul este activ si bordura devine verde prin --accent */
+
+ /* liniile 45 si 46 fac ca placeholdfer-ul cu "Introdu URL imagine" apare in gri prin globalul --muted */
+
+ /* liniile 49-53 este stilul de baza al ambelor butoane font de dimensiune mica, spatiu interior, colturi rotunjite */
+ /* liniile 54 - 56 fac butonul Aplica cu fundal transparent cu bordura si text verde */
+
+ /* liniile 57-59 fac sa devina cursorul manuta in momentul in care duc cursorul pe butonul Aplica. white-space: nowrap este pentru telefon
+ adica daca textul butonului nu incape pe o singura linie, butonul merge pe randul urmator in intregime si asta datorila flex:wrap: wrap 
+ din .bg-row */
+
+
+ /* liniile 62-65 fac ca atunci cand duc cursorul pe buton acesta devne verde iar textul devine negru, adica efectul invers fata de starea
+ lui nromala */
+
+ /* liniile 67-70 butonul "Reseteaza" suprascrie culorile de la .bg-btn adica in bordura si text rosu in loc de verde */
+
+ /* liniile 72 -75 in momentul in care duc cursorul pe butonul Reseteaza acesta se umple cu rosu iar textul devine alb */
+
+ /*liniile 77-84  este un strat invizibil care acopera intreaga pagina permanent, adica :: before creaza un elemnt fals inainte continutului body
+ nu exista in HTML dar css il deseneaza. Deci creaza ca o folie neagra semitransparenta care intunenca putin imagine d fundal, fara
+ aceasta folie daca incarc imagine de fundal, textul alb din carduri, butoane ar fi greu de citit, nu afecteaza mult imaginea de fundal,
+ doar o intuneca putin 
+ inset:0 inseamna top: 0, right: 0, bottom: 0 si left: 0 adica acopera tot ecranul
+ position: fixed face sa ramana fix chiar si atunci cand scrolez
+ Background: rgba (0,0,0,0.23) este un strat negru cu 23% opacitate, daca setez o imagine de fundal luminoasa, acest strat o intuneca usor
+ ca textul sa ramana lizibil.
+ pointer-events: none stratul este complet ignorat la clickuri de mouse */
+
+ /* liniile 86-88 toate elementele principale ale aplicatiei primesc z-index: 1 ca sa apara deasupra stratului :: before care are z-index :0
+ fara aceasta regula fundalul intunecat ar acoperii tot continutul si nu as mai vedea nimic */

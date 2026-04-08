@@ -1,0 +1,182 @@
+<!DOCTYPE html> <!-- ii spune browseru-lui ca acest fisier este un document HTML -->
+<html lang="ro"> <!-- atributul lang="ro" ii spune browser-ului ca limba paginii este in romana acest lucru este important pentru accesibilitate si motoare de cautare -->
+<head> <!-- aici pun informatii despre pagina, adica tot ce pun aici nu este continut vizibil pe pagina -->
+    <meta charset="UTF-8" /> <!-- ii spune browser-ului ce set de caractere sa foloseasca UTF-8 suporta toate caracterele speciale, fara aceasta linie diacriticile nu ar
+     aparea cum trebuie -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- face pagina responsiva pe telefon, fara ea telefonul ar afisa pagina ca pe un desktop micsorat -->
+    <title>my.tasks  </title> <!-- este titlul paginii, textul care apare in tabul browserului si cand salvezi pagina la favorite -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/> <!--Importa doua fonturi
+    externe de la Google Fonts, Fontul Syne si fontul DM Mono, Syne este folosit pentru titlul my.tasks, iar DM mono este folosit pentru tot restul textului, rel="stylesheet ii
+    spune browser-ului ca este un fisier css -->
+    <link rel="stylesheet" href="Variabileglobale.css"> <!-- Leaga fisierul de CSS de pagina. Regula de aur, conteaza ordinea style.css vinde dupa Google fonts astfel incat sa pot folosi
+    fonturile importate in CSS-ul meu. -->
+    <link rel="stylesheet" href="resetandbase.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="filter_tabs.css">
+    <link rel="stylesheet" href="input_area.css">
+    <link rel="stylesheet" href="card_list.css">
+    <link rel="stylesheet" href="checkbox.css">
+    <link rel="stylesheet" href="card_content.css">
+    <link rel="stylesheet" href="card_actions.css">
+    <link rel="stylesheet" href="empty_state.css">
+    <link rel="stylesheet" href="sterge_finalizate_export_csv.css">
+    <link rel="stylesheet" href="modulul_de_editare.css">
+    <link rel="stylesheet" href="scrolbar.css">
+    <link rel="stylesheet" href="background_panel.css">
+    <link rel="stylesheet" href="borduri_colorate_dupa_prioritate.css">
+    <link rel="stylesheet" href="data_de_expirare_in_carduri.css">
+    <link rel="stylesheet" href="responsive_mobile.css">
+    <link rel="stylesheet" href="calendar_flatpickr.css">
+    <link rel="manifest" href="manifest.json" /> <!-- manifest.json leaga fisierul cu informatii despre aplicatie (nume, iconita, culori) necesar pentru instalare pe telefon. Pe scurt fara  manifest.json aplicatia nu poate fi instalata pe telefon. Cu el broswserul stie ca este Progressive Web App -->
+    <meta name="theme-color" content="#c6f135" /> <!--theme-color culoarea barei de sus pe Android cand deschizi aplicatia sa apara culoarea verde #c6f135 -->
+    <meta name="mobile-web-app-capable" content="yes" /> <!-- apple-mobile-web-app-capable ii spune iPhone-ului ca aceasta pagina poate functiona ca o aplicatie nativa -->
+    <meta name="apple-mobile-web-app-title" content="My tasks" /> <!-- apple-mobile-web-app-title este numele aplicatie care apare sub iconita pe ecranul principal al iPhoneului -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- importa CSS-ul pentru Flatpickr acesta fiind calendarul custom pe care 
+    l-am integrat -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- importa libraria Font Awesome, libraria de iconite pe care o
+    folosesc in carduri -->
+    </head>
+
+    <body> <!-- tot ce scriu aici se vede pe ecran, toate elementele vizibile inputuri, carduri, butoane, header etc -->
+
+
+        <!-- Aici este antetul paginii -->
+
+        <header> <!-- este un tag semantic care ii spune browser-ului ca acesta este antetul paginii -->
+            <h1>my<span>.</span>tasks</h1> <!--acesta este titlul paginii, iar <h1> este cel mai important heading. Punctul "." este pus intre <span> separat ca sa il pot stiliza
+                in CSS, adica i-am pus culoare verde neon -->
+            <div class="stats" id="stats"></div> <!-- acesta este un container gol acum, dar Javascript il umple cu textul acela pentru "finalizate" din coltul dreapta, exemplu
+            "2/7 finalizate" si are id="stats" astfel incat javascript sa il poata gasii cu getElementById('stats') !!!!FOARTE IMPORTANT!!!! class este folosit pentru stilizare in 
+            CSS, iar id este folosit in JavaScript pentru a gasii elementul -->
+        </header>
+
+        <!-- Tab-ul de filtrare-->
+
+        <div class="tabs"> <!-- este un container care tine cele 3 butoane de filtrare impreuna. CSS-ul il stilizeaza cu "display: flex" astfel incat butoanele sa stea pe
+            acelasi rand -->
+            <button class="tab active" data-filter="all">toate</button> <!-- butonul toate are  atribute importante si anume class="tab active" are doua clase tab pentru
+            stilul de baza si active pentru ca e selectat implicit la inceput. "data-filter="all" este un atribut de date pe care Javascript il citeste cu tab.dataset.filter
+            astfel incat sa stie ce filtrare sa aplice -->
+            <button class="tab" data-filter="active">active</button> <!-- acest buton nu mai are clasa activesi valoare diferite pentru data-filter -->
+            <button class="tab" data-filter="done">finalizate</button> <!-- acest buton nu mai are clasa active si valoare diferita pentru data -filter -->
+            <!-- IMPORTANT! data-filter atribut prin care transmit informatii catre Javascript
+             ! clasa active se muta intre butoane prin javascript cand dai click pe ele -->
+        </div>
+
+        <!-- Adaugare task-uri -->
+
+        <div class="add-area"> <!--este container-ul mare care inconjoara tot formularul de adaugare -->
+            <div class="add-row"> <!-- este un rand interior care tine input-urile pe acelasi rand cu "display: flex" din CSS -->
+                <input type="text" id="taskInput" placeholder="Adauga un task nou..." /> <!--input type="text" id="taskInput" este campul unde scriu numele task-ului, iar 
+                placeholder-ul este textul gri care apare in camp si dispare cand incep sa completez -->
+                <input type="date" id="dueDateInput" placeholder="Data expirare" /> <!-- input type="date" id="dueDateInput este campul pentru data de expirare a task-ului iar
+                Flatpickr il transforma intr-un calendar mai frumos -->
+                <select class="cat-select" id="catSelect"> <!-- este o lista derulanta pentru categorie iar fiecare <option> de mai jos este o optiune din lista iar "value"
+                    este ce salveaza Javascript, iar textul dintre taguri este ce vede utilizatorul -->
+                    <option value="General">General</option>
+                    <option value="Munca">Munca</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Cumparaturi">Cumparaturi</option>
+                    <option value="Sanatate">Sanatate</option>
+                    <option value="Proiect">Proiect</option>
+                </select>
+                <button class="add-btn" id="addBtn">+ Adauga</button> <!-- este butonul de Adaugare, iar Javascript il face functional ca atunci cand dai click pe el sa adauge task-ul
+                cu "addEventListener" -->
+            </div>
+
+            <!-- Butoane prioritate: scazuta, medie, ridicata -->
+
+            <div class="priority-row"> <!-- este containerul care tine butoanele de prioritate pe acelasi rand -->
+                <label>PRIORITATE:</label> <!-- este un text descriptiv care spune ce reprezinta butoanele de langa el -->
+                <button class="prio-btn active" data-p="low">scazuta</button> <!-- butonul pentru prioritate scazuta este la fel ca la tab-urile de filtrare are clasa "active"
+                implcit pentru scazuta ca aceasta sa fie selectata la inceput, iar "data-p="low"" aceasta valoare este citita de Javascript si o salveaza in variabila "selectedPrio" -->
+                <button class="prio-btn" data-p="medium">medie</button> <!-- aceste doua butoane sunt identice difera doar data-p valoarea citita de Javascript -->
+                <button class="prio-btn" data-p="high">ridicata</button> <!-- aceste doua butoane sunt identice difera doar data-p valoarea citita de Javascript -->
+
+            </div>
+        </div>
+
+        <!-- Lista de taskuri -->
+
+        <div id="list"></div> <!-- este un container gol in HTML, dar javascript il umple dinamic cu cardurile task-urilor prin functia "render()"
+        Cand adaug un task jAvascript genereaza HTML si il injecteaza in acest div cu "document.getElementById('list').innerHTML = '...carduri generate...'"
+        !!! Important!! Nu toate elementele trebuie sa aiba continut HTML, uneori poate fi un containeri gol si javascript il umple.  Acesta este unul din conceptele
+        de baza ale aplicatiiolr dinamice, pagina se actualizeaza fara sa dau refresh. -->
+
+        <!-- Action bar - Butoanele pentru Stergere task-uri si pentru Export CSV -->
+
+        <div class="actions-bar"> <!-- Containerul pentru butoanele de jos -->
+            <button class="clear-btn" id="clearDone">sterge finalizate</button> <!-- butonul sterge toate task-urile finalizate -->
+            <button class="export-btn" id="exportBtn">Export CSV</button> <!-- butonul descarca lista de task-uri ca fisier .CSV, iar Javascript genereaza fisierul si porneste
+            descarcare -->
+        </div>
+
+        <!-- Edit<Modal (fereastra de Editeaza Task) -->
+
+        <div class="modal-overlay" id="modalOverlay"> <!-- este fundalul intunecat semi-transparent care acopera tot ecranul cand modalul este deschis, in CSS are opacity: 0
+            si pointer-events: none , adica este invizibl si nu poate fi dat click, iar cand JavaScript adauga clasa open, devine vizibil. -->
+            <div class="modal"> <!-- este fereastra din mijloc cu formularul de editate -->
+                <h2>Editeaza task</h2> <!-- titlul modalului -->
+                <input type="text" id="editInput" class="edit-input" /> <!--este campul unde modific textul taskului, Javascript il populeaza cu textul existent cand deschizi modalul -->
+                <select class="cat-select" id="editCat" style="width:100%;"></select> <!-- este campul de unde selectezi categoria din modal, spre deosebire de cel din formularul princeipal
+                acesta este gol in HTML, iar Javascript il populeaza dinamic cu optiunile din array-ul CATS. -->
+                <div class="priority-row">
+                    <label>PRIORITATE:</label>
+                    <button class="prio-btn" data-ep="low">scazuta</button> <!-- Butonul de perioritate scazuta si are acelasi principiu cu "data-p" de la butoanele de prioritate, iar ep vine
+                    de la edit priority -->
+                    <button class="prio-btn" data-ep="medium">medie</button> <!-- la fel ca butonul de mai sus -->
+                    <button class="prio-btn" data-ep="high">ridicata</button> <!-- la fel ca butonul de mai sus -->
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-cancel" id="modalCancel">Anuleaza</button> <!-- este butonul care inchide modalul fara sa salveze modificarile -->
+                    <button class="modal-save" id="modalSave">Salveaza</button> <!-- este butonul care inchide modalul cu salvare -->
+                    <!-- Important!!! Modalul exista tot timpul in HTML doar ca este invizibil, Javascript il face vizibil adaugand clasa open si invizibl scotand-o -->
+                </div>
+            </div>
+        </div>
+
+        <!-- BACKGROUND PANEL -->
+
+        <div class="bg-panel"> <!-- containerul pentru sectiounea de fundal personalizat -->
+            <span class="bg-label">Fundal personalizat</span> <!-- textul descriptiv, am folosit <span> in loc de <div> pentru ca este un element inline, nu ocupa tot randul, sta in flux cu textul -->
+            <div class="bg-row"> <!-- este un container care spune ca elementele din interior adia campul cu URL ul imaginii si butoanele Aplica si Reseteaza vor fi pe un rand asta cu ajutorul CSS-ului -->
+                <input type="text" id="bgInput" placeholder="Introdu URL imagine ..." /> <!-- este campul unde scriu URL ul imaginii de fundal -->
+                <button class="bg-btn" id="bgApply">Aplica</button> <!-- este butonul care aplica fundalul, JavaScript citeste URL ul din input si il seteaza ca background-image pe body. -->
+                <button class="bg-btn bg-btn-clear" id="bgClear">Reseteaza</button> <!-- reseteaza fundalul la negrul impicit si sterge URL ul din localStorage -->
+            </div>
+
+            <!-- IMPORTANT!!!!!
+             div element block adica ocupa tot randul, elementele urmatoare merg pe rand nou 
+             span element inline sta pe acelasi rand cu ce este langa el -->
+        </div>
+
+        <script src="confetti.browser.min.js"></script> <!-- este libraria de confetti salvata in folder -->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> <!-- este libraria pentru calendarul custom -->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ro.js"></script> <!-- este libraria pentru traducerea in romana pentru Flatpickr adica zilele si lunile in romana -->
+        <script src="variabile_de_stare_state.js"></script> 
+        <script src="salvare.js"></script>
+        <script src="generare_id_unic.js"></script>
+        <script src="format_data.js"></script>
+        <script src="protectie_html.js"></script>
+        <script src="functia_render.js"></script>
+        <script src="adaugare_task.js"></script>
+        <script src="bifat_si_debifat.js"></script>
+        <script src="sterge_task.js"></script>
+        <script src="sterge_toate_finalizate.js"></script>
+        <script src="deschidere_inchidere_modal_editare.js"></script>
+        <script src="export_csv.js"></script>
+        <script src="background_personalizat.js"></script>
+        <script src="butoane_prioritate.js"></script>
+        <script src="taburi_de_filtrare.js"></script>
+        <script src="buton_adauga_campul_de_adaugare.js"></script>
+        <script src="buton_sterge_finalizate.js"></script>
+        <script src="modal_butoane_click_fundal_camp_editare.js"></script>
+        <script src="calendar_flatpickr.js"></script>
+        <script src="initializare.js"></script>       
+        
+        
+
+    </body>
+</html>
+

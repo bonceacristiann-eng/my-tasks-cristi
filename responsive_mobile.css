@@ -1,0 +1,63 @@
+@media (max-width: 600px) {
+
+  body {
+    padding: 20px 12px 60px;
+  }
+
+  header {
+    margin-bottom: 24px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .add-row {
+    flex-direction: column;
+  }
+
+
+  .cat-select {
+    width: 100%;
+    min-width: unset;
+  }
+
+
+  .add-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card {
+    padding: 12px 14px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .actions-bar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .clear-btn, .export-btn {
+    text-align: center;
+    width: 100%;
+  }
+
+  .bg-row {
+    flex-direction: column;
+  }
+
+  .bg-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 20px 16px;
+  }
+
+}

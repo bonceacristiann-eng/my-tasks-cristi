@@ -1,0 +1,31 @@
+.tabs {
+  max-width: 720px;
+  margin: 0 auto 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.tab {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+  letter-spacing: .05em;
+}
+
+.tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #111;
+  font-weight: 600;
+}
