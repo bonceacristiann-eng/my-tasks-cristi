@@ -8,30 +8,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/> <!--Importa doua fonturi
     externe de la Google Fonts, Fontul Syne si fontul DM Mono, Syne este folosit pentru titlul my.tasks, iar DM mono este folosit pentru tot restul textului, rel="stylesheet ii
     spune browser-ului ca este un fisier css -->
-    <link rel="stylesheet" href="Variabileglobale.css"> <!-- Leaga fisierul de CSS de pagina. Regula de aur, conteaza ordinea style.css vinde dupa Google fonts astfel incat sa pot folosi
+    <link rel="stylesheet" href="styles/Base/variables.css"> <!-- Leaga fisierul de CSS de pagina. Regula de aur, conteaza ordinea style.css vinde dupa Google fonts astfel incat sa pot folosi
     fonturile importate in CSS-ul meu. -->
-    <link rel="stylesheet" href="resetandbase.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="filter_tabs.css">
-    <link rel="stylesheet" href="input_area.css">
-    <link rel="stylesheet" href="styles/Cards/card_list.css">
-    <link rel="stylesheet" href="checkbox.css">
-    <link rel="stylesheet" href="styles/Cards/card_content.css">
-    <link rel="stylesheet" href="styles/Cards/card_actions.css">
-    <link rel="stylesheet" href="empty_state.css">
-    <link rel="stylesheet" href="sterge_finalizate_export_csv.css">
-    <link rel="stylesheet" href="modulul_de_editare.css">
-    <link rel="stylesheet" href="scrolbar.css">
-    <link rel="stylesheet" href="styles/Background/background_panel.css">
-    <link rel="stylesheet" href="styles/Cards/borduri_colorate_dupa_prioritate.css">
-    <link rel="stylesheet" href="styles/Cards/data_de_expirare_in_carduri.css">
-    <link rel="stylesheet" href="responsive_mobile.css">
-    <link rel="stylesheet" href="styles/Calendar/calendar_flatpickr.css">
+    <link rel="stylesheet" href="styles/Base/reset-and-base.css">
+    <link rel="stylesheet" href="styles/Layout/header.css">
+    <link rel="stylesheet" href="styles/Navigation/filter-tabs.css">
+    <link rel="stylesheet" href="styles/Adaugare_task/add-task.css">
+    <link rel="stylesheet" href="styles/Cards/card-list.css">
+    <link rel="stylesheet" href="styles/Cards/card-checkbox.css">
+    <link rel="stylesheet" href="styles/Cards/card-content.css">
+    <link rel="stylesheet" href="styles/Cards/card-actions.css">
+    <link rel="stylesheet" href="styles/Cards/card-empty.css">
+    <link rel="stylesheet" href="styles/Actions/buttons-bottom.css">
+    <link rel="stylesheet" href="styles/Modal/edit-modal.css">
+    <link rel="stylesheet" href="styles/Base/scrolbar.css">
+    <link rel="stylesheet" href="styles/Background/bg-panel.css">
+    <link rel="stylesheet" href="styles/Cards/card-priority.css">
+    <link rel="stylesheet" href="styles/Cards/card-due.css">
+    <link rel="stylesheet" href="styles/Mobile/responsive-mobile.css">
+    <link rel="stylesheet" href="styles/Calendar/calendar-flatpickr.css">
     <link rel="manifest" href="manifest.json" /> <!-- manifest.json leaga fisierul cu informatii despre aplicatie (nume, iconita, culori) necesar pentru instalare pe telefon. Pe scurt fara  manifest.json aplicatia nu poate fi instalata pe telefon. Cu el broswserul stie ca este Progressive Web App -->
     <meta name="theme-color" content="#c6f135" /> <!--theme-color culoarea barei de sus pe Android cand deschizi aplicatia sa apara culoarea verde #c6f135 -->
     <meta name="mobile-web-app-capable" content="yes" /> <!-- apple-mobile-web-app-capable ii spune iPhone-ului ca aceasta pagina poate functiona ca o aplicatie nativa -->
     <meta name="apple-mobile-web-app-title" content="My tasks" /> <!-- apple-mobile-web-app-title este numele aplicatie care apare sub iconita pe ecranul principal al iPhoneului -->
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- importa CSS-ul pentru Flatpickr acesta fiind calendarul custom pe care 
     l-am integrat -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- importa libraria Font Awesome, libraria de iconite pe care o
@@ -154,26 +154,26 @@
         <script src="scripts/Libs/confetti.browser.min.js"></script> <!-- este libraria de confetti salvata in folder -->
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> <!-- este libraria pentru calendarul custom -->
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ro.js"></script> <!-- este libraria pentru traducerea in romana pentru Flatpickr adica zilele si lunile in romana -->
-        <script src="variabile_de_stare_state.js"></script> 
-        <script src="salvare.js"></script>
-        <script src="generare_id_unic.js"></script>
-        <script src="format_data.js"></script>
-        <script src="protectie_html.js"></script>
-        <script src="functia_render.js"></script>
-        <script src="adaugare_task.js"></script>
-        <script src="bifat_si_debifat.js"></script>
-        <script src="sterge_task.js"></script>
-        <script src="sterge_toate_finalizate.js"></script>
-        <script src="scripts/Modal editare/deschidere_inchidere_modal_editare.js"></script>
-        <script src="export_csv.js"></script>
-        <script src="background_personalizat.js"></script>
-        <script src="scripts/Butoane/butoane_prioritate.js"></script>
-        <script src="taburi_de_filtrare.js"></script>
-        <script src="scripts/Butoane/buton_adauga_campul_de_adaugare.js"></script>
-        <script src="scripts/Butoane/buton_sterge_finalizate.js"></script>
-        <script src="scripts/Modal editare/modal_butoane_click_fundal_camp_editare.js"></script>
-        <script src="calendar_flatpickr.js"></script>
-        <script src="initializare.js"></script>       
+        <script src="scripts/State/app-state.js"></script> 
+        <script src="scripts/Storage/save-tasks.js"></script>
+        <script src="scripts/Utilities/generate-id.js"></script>
+        <script src="scripts/Utilities/format-date.js"></script>
+        <script src="scripts/Utilities/xss-protection.js"></script>
+        <script src="scripts/Render/render-task-list.js"></script>
+        <script src="scripts/Tasks/add-task.js"></script>
+        <script src="scripts/Tasks/toggle-task.js"></script>
+        <script src="scripts/Tasks/delete-task.js"></script>
+        <script src="scripts/Tasks/clear-completed-tasks.js"></script>
+        <script src="scripts/Modal/modal-functions.js"></script>
+        <script src="scripts/Modal/modal-events.js"></script>
+        <script src="scripts/Export/export-csv.js"></script>
+        <script src="scripts/Background/background-panel.js"></script>
+        <script src="scripts/Events/priority-buttons.js"></script>
+        <script src="scripts/Events/filter-tabs-events.js"></script>
+        <script src="scripts/Events/add-task-events.js"></script>
+        <script src="scripts/Events/button-events.js"></script>
+        <script src="scripts/Calendar/flatpickr.js"></script>
+        <script src="scripts/App-start/initialize.js"></script>       
         
         
 
